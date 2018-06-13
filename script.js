@@ -108,9 +108,10 @@ fetch(url)
         li.setAttribute("id", `${user.id}`);
         let span = createNode('span');
         
-        span.innerHTML = `${user.name}`;
+        //span.innerHTML = `${user.name}`;
+        li.innerHTML = `${user.name}`;
         
-        append(li, span);
+        //append(li, span);
         append(ul1, li);
         
     })
@@ -162,7 +163,8 @@ fetch(url2)
         li.setAttribute("class", "todo-" + `${todo.userId}` + "");
         let span = createNode('span');
         
-        span.innerHTML = `${todo.title}`;
+        //span.innerHTML = `${todo.title}`;
+        li.innerHTML = `${todo.title}`;
         
         let todoCompleted = todo.completed;
         //console.log(todoCompleted);
@@ -171,7 +173,7 @@ fetch(url2)
             li.setAttribute("class", "done");
         }
         
-        append(li, span);
+        //append(li, span);
         append(ul2, li);
         
     })
@@ -187,9 +189,10 @@ fetch(url2)
 for (let i = 0; i < ul.length; i++) {
     ul[i].addEventListener("click", function(event) {
         let target = event.target;
-        //console.log(event);
+        console.log(event);
         //target.classList.toggle("done");
-        let user = event.path[1].id;
+        //let user = event.path[1].id;
+        let user = event.srcElement.id;
         
         let leanne      = document.querySelectorAll(".todo-1");
         let ervin       = document.querySelectorAll(".todo-2");
