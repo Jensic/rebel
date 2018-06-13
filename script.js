@@ -84,7 +84,7 @@ fetch(url2)
 *                TEST                      *
 ********************************************/
 
-const ul1 = document.getElementById("users");
+/*const ul1 = document.getElementById("users");
 
 const url = 'https://jsonplaceholder.typicode.com/users';
 
@@ -95,7 +95,7 @@ fetch(url)
     
     data.map(function(user) {
         
-        const obj = data.find(function (obj) { return obj.id === 3; });
+        const obj = data.find(function (obj) { return obj.id === 1; });
         //console.log(obj);
         
     })
@@ -130,32 +130,13 @@ fetch(url2)
 .then(function(data) {
     //console.log(data);
         
-/*    for(let i = 0; i < data.length; i++) {
+    for(let i = 0; i < data.length; i++) {
         let test = data[i];
         //console.log(test);
         if(data[i].userId === 1) {
             console.log("match");
-            return data.map(function(todo) {
-                //console.log(todo);
-                let li = createNode('li');
-                li.setAttribute("class", "todo-" + `${todo.userId}` + "");
-                let span = createNode('span');
-
-                span.innerHTML = `${todo.title}`;
-
-                let todoCompleted = todo.completed;
-                //console.log(todoCompleted);
-                if(todoCompleted) {
-                    //console.log("Ho");
-                    li.setAttribute("class", "done");
-                }
-
-                append(li, span);
-                append(ul3, li);
-
-            })
         }
-    }*/
+    }
     
     return data.map(function(todo) {
         //console.log(todo);
@@ -180,8 +161,58 @@ fetch(url2)
 })
 .catch(function(error) {
     console.log(JSON.stringify(error));
-});
+});*/
 
+/*var url = 'https://jsonplaceholder.typicode.com/users';
+
+var result = fetch(url)
+.then(function(response) {
+    
+    return response.json(); // pass the data as promise to next then block
+  
+})
+.then(function(data) {
+    
+    console.log(data);
+    //var id = data[0].id;
+
+    //console.log(id);
+  
+    //return fetch('https://jsonplaceholder.typicode.com/todos/' + id); // make a 2nd request and return a promise
+    return fetch('https://jsonplaceholder.typicode.com/todos/'); // make a 2nd request and return a promise
+  })
+.then(function(response) {
+    
+    return response.json();
+
+})
+.catch(function(error) {
+    
+    console.log('Request failed', error)
+
+})
+
+// I'm using the result variable to show that you can continue to extend the chain from the returned promise
+result.then(function(r) {
+    
+  console.log(r); // 2nd request result
+
+});*/
+
+var apiRequest1 = fetch('https://jsonplaceholder.typicode.com/users').then(function(response){ 
+         return response.json()
+});
+var apiRequest2 = fetch('https://jsonplaceholder.typicode.com/todos').then(function(response){
+         return response.json()
+});
+var combinedData = {"apiRequest1":{},"apiRequest2":{}};
+                    
+Promise.all([apiRequest1,apiRequest2]).then(function(values){
+    combinedData["apiRequest1"] = values[0];
+    combinedData["apiRequest2"] = values[1];
+    return combinedData;
+});
+console.log(combinedData);
 /********************************************
 *               FUNCTIONS                   *
 ********************************************/
@@ -189,7 +220,7 @@ fetch(url2)
 for (let i = 0; i < ul.length; i++) {
     ul[i].addEventListener("click", function(event) {
         let target = event.target;
-        console.log(event);
+        //console.log(event);
         //target.classList.toggle("done");
         //let user = event.path[1].id;
         let user = event.srcElement.id;
