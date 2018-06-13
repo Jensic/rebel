@@ -210,9 +210,16 @@ var combinedData = {"apiRequest1":{},"apiRequest2":{}};
 Promise.all([apiRequest1,apiRequest2]).then(function(values){
     combinedData["apiRequest1"] = values[0];
     combinedData["apiRequest2"] = values[1];
-    return combinedData;
+    //return combinedData;
+    //console.log(combinedData);
+    test(combinedData);
+    
 });
-console.log(combinedData);
+//console.log(combinedData);
+let test = (combinedData) => {
+    console.log(combinedData);
+}
+test();
 /********************************************
 *               FUNCTIONS                   *
 ********************************************/
