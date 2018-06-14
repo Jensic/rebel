@@ -199,7 +199,7 @@ result.then(function(r) {
 
 });*/
 
-var apiRequest1 = fetch('https://jsonplaceholder.typicode.com/users').then(function(response){ 
+/*var apiRequest1 = fetch('https://jsonplaceholder.typicode.com/users').then(function(response){ 
          return response.json()
 });
 var apiRequest2 = fetch('https://jsonplaceholder.typicode.com/todos').then(function(response){
@@ -219,7 +219,57 @@ Promise.all([apiRequest1,apiRequest2]).then(function(values){
 let test = (combinedData) => {
     console.log(combinedData);
 }
-test();
+test();*/
+
+const apiRequest1 = fetch('https://jsonplaceholder.typicode.com/users').then(function(response){ 
+         return response.json()
+});
+const apiRequest2 = fetch('https://jsonplaceholder.typicode.com/todos').then(function(response){
+         return response.json()
+});
+const combinedData = {"apiRequest1":{},"apiRequest2":{}};
+                    
+const allData = () => {
+    Promise.all([apiRequest1,apiRequest2]).then(function(values){
+    combinedData["apiRequest1"] = values[0];
+    combinedData["apiRequest2"] = values[1];
+    //return combinedData;
+    //console.log(combinedData);
+    //console.log(Object.values(combinedData));
+    const data = (Object.values(combinedData));
+    console.log(data);
+    console.log(data[0][0]);
+    console.log(data[0][0].id);
+    data[0][0].userId = data[0][0].id;
+    delete data[0][0].id;
+    console.log(data[0][0]);
+        
+    for(let i = 0; i < data[0].length; i++) {
+        let test = data[0][i];
+        console.log(test);
+        if(data[0][i].userId === 1) {
+            console.log("match");
+        }
+    }    
+        
+    data.map(function(todo) {
+        //console.log(todo);
+        todo.map(function(todo1) {
+            //console.log(todo1);
+        
+        })
+        
+    })
+        
+    });
+}
+allData();
+/*const makeRequest = async () => {
+    console.log(await allData());
+}
+
+makeRequest();*/
+
 /********************************************
 *               FUNCTIONS                   *
 ********************************************/
