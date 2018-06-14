@@ -237,16 +237,18 @@ const allData = () => {
     //console.log(combinedData);
     //console.log(Object.values(combinedData));
     const data = (Object.values(combinedData));
-    console.log(data);
-    console.log(data[0][0]);
-    console.log(data[0][0].id);
+    //console.log(data);
+    //console.log(data[0][0]);
+    //console.log(data[0][0].id);
     data[0][0].userId = data[0][0].id;
-    delete data[0][0].id;
-    console.log(data[0][0]);
+    //delete data[0][0].id;
+    //console.log(data[0][0]);
         
     for(let i = 0; i < data[0].length; i++) {
+        data[0][i].userId = data[0][i].id;
+        delete data[0][i].id;
         let test = data[0][i];
-        console.log(test);
+        //console.log(test);
         if(data[0][i].userId === 1) {
             console.log("match");
         }
@@ -255,7 +257,7 @@ const allData = () => {
     data.map(function(todo) {
         //console.log(todo);
         todo.map(function(todo1) {
-            //console.log(todo1);
+            console.log(todo1);
         
         })
         
